@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>APA Citation Generator</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background-image: url('https://images.unsplash.com/photo-1524995997946-a1c2e315a42f');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      color: #fff;
+      min-height: 100vh;
+    }
+
+    .overlay {
+      background-color: rgba(0, 0, 0, 0.6);
+      min-height: 100vh;
+      padding: 60px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    h2 {
+      font-size: 2.5rem;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+
+    form {
+      background-color: #ffffffcc;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      max-width: 600px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      color: #000;
+    }
+
+    input {
+      padding: 10px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+    }
+
+    button {
+      padding: 12px;
+      background-color: #ffd700;
+      color: #000;
+      font-weight: bold;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #ffcc00;
+    }
+
+    #result {
+      margin-top: 30px;
+      background-color: #ffffffcc;
+      color: #000;
+      padding: 20px;
+      border-radius: 10px;
+      max-width: 600px;
+      width: 100%;
+      font-style: italic;
+      font-size: 1.1rem;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    @media (max-width: 600px) {
+      h2 {
+        font-size: 2rem;
+      }
+
+      form {
+        padding: 20px;
+      }
+
+      input, button {
+        font-size: 0.95rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="overlay">
+    <h2>📝 APA Citation Generator</h2>
+    <form id="citeForm">
+      <input type="text" id="author" placeholder="Author Name (e.g., Smith, J.)" required>
+      <input type="text" id="year" placeholder="Year (e.g., 2023)" required>
+      <input type="text" id="title" placeholder="Title of the work" required>
+      <input type="text" id="source" placeholder="Journal / Book Title" required>
+      <button type="submit">Generate Citation</button>
+    </form>
+
+    <p id="result" style="display: none;"></p>
+  </div>
+
+  <script>
+    document.getElementById('citeForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const author = document.getElementById('author').value.trim();
+      const year = document.getElementById('year').value.trim();
+      const title = document.getElementById('title').value.trim();
+      const source = document.getElementById('source').value.trim();
+
+      const citation = `${author} (${year}). <i>${title}</i>. <strong>${source}</strong>.`;
+
+      const resultBox = document.getElementById('result');
+      resultBox.innerHTML = citation;
+      resultBox.style.display = "block";
+    });
+  </script>
+</body>
+</html>
