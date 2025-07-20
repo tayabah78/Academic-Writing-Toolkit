@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Check Your Text</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background-image: url('https://images.unsplash.com/photo-1524995997946-a1c2e315a42f');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      color: #fff;
+      min-height: 100vh;
+    }
+
+    .overlay {
+      background-color: rgba(0, 0, 0, 0.6);
+      min-height: 100vh;
+      padding: 60px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    h2 {
+      font-size: 2.5rem;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+
+    textarea {
+      width: 100%;
+      max-width: 700px;
+      height: 200px;
+      padding: 15px;
+      font-size: 1rem;
+      border-radius: 10px;
+      border: none;
+      resize: vertical;
+      background-color: #ffffffcc;
+      color: #000;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    button {
+      padding: 12px 24px;
+      font-size: 1rem;
+      font-weight: bold;
+      background-color: #ffd700;
+      color: #000;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.4);
+    }
+
+    button:hover {
+      background-color: #ffcc00;
+    }
+
+    #feedback {
+      margin-top: 30px;
+      max-width: 700px;
+      width: 100%;
+      background-color: #ffffffcc;
+      color: #000;
+      padding: 20px;
+      border-radius: 10px;
+      font-size: 1.1rem;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    @media (max-width: 600px) {
+      h2 {
+        font-size: 2rem;
+      }
+
+      textarea {
+        height: 180px;
+      }
+
+      button {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="overlay">
+    <h2>📄 Check Your Text</h2>
+
+    <textarea id="userText" placeholder="Paste your text here..."></textarea>
+    <button onclick="checkText()">Check</button>
+
+    <p id="feedback"></p>
+  </div>
+
+  <script>
+    function checkText() {
+      let text = document.getElementById('userText').value.trim();
+      let feedback = "";
+
+      if (!text.toLowerCase().includes("references")) {
+        feedback += "⚠️ Missing <strong>References</strong> section.<br>";
+      }
+      if (!text.toLowerCase().includes("abstract")) {
+        feedback += "⚠️ Missing <strong>Abstract</strong> section.<br>";
+      }
+      if (text.length < 300) {
+        feedback += "⚠️ Your text seems too short. Minimum ~300 characters recommended.<br>";
+      }
+
+      if (feedback === "") {
+        feedback = "✅ Looks good! Your text includes Abstract and References and is long enough.";
+      }
+
+      document.getElementById('feedback').innerHTML = feedback;
+    }
+  </script>
+</body>
+</html>
